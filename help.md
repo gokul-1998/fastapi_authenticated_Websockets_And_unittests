@@ -1,0 +1,1 @@
+- to run tests: `pytest tests` from `fastapi_authenticated_websockets_and_unittests` folder

@@ -39,6 +39,10 @@ def read_index(request: Request):
 	# Render the HTML template
 	return templates.TemplateResponse("index.html", {"request" : request})
 
+@app.get('/a')
+def blah():
+	return {"msg": "Hello World"}
+
 @app.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
 	#accept connections 
@@ -55,3 +59,18 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
 	except WebSocketDisconnect:
 		connectionmanager.disconnect(websocket)
 		await connectionmanager.broadcast(f"Client #{client_id} left the chat")
+
+
+# # to write a test for the websocket, we need to use the websocket_connect() method from the TestClient class
+# from fastapi.testclient import TestClient
+# from chat_app2.main import app
+
+# client = TestClient(app)
+
+# # def test_websocket():
+# # 	#connect to the websocket
+# # 	with client.websocket_connect("/ws/1") as websocket:
+# # 		#receive the message from the websocket
+# # 		data = websocket.receive_json()
+# # 		#check if the message is same as expected
+# # 		assert data == {"msg": "Hello WebSocket"}
