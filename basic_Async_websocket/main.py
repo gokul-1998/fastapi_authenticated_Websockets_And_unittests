@@ -38,3 +38,6 @@ def test_websocket():
     get_settings().run = False
     with client.websocket_connect('/ws') as websocket:
         pass
+    
+# to run the above test case use the following command:
+# `python -m pytest basic_Async_websocket/main.py`
